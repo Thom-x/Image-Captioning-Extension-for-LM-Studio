@@ -57,12 +57,12 @@ class CaptioningApp:
             messages=[
                 {
                     "role": "system",
-                    "content": "This is a chat between a user and an assistant. The assistant is helping the user to caption an image.",
+                    "content": "This is a chat between a user and an assistant. The assistant is helping the user to caption an image for training lora model.",
                 },
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": "only ouput the response, no explanation, no sentence only words, caption this image, only main points, only tags, no full sentence, describe the mood, the background, the light, colors, all details, as much as possible, use comma between different points"},
+                        {"type": "text", "text": "caption the image with comma separated keyword only for training lora model"},
                         {
                             "type": "image_url",
                             "image_url": {
