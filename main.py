@@ -37,8 +37,7 @@ class CaptioningApp:
                         f.write(captions)
                     print(f"- Success: ", "success_message")
                     print(f"Image '{file}' has been captioned and the result saved to '{destination_path}'.\n")
-
-            
+                    print(f"Caption: '{captions}'")
         except Exception as e:
             print(f"Error: {e}\n", "error_message")
 
@@ -57,12 +56,22 @@ class CaptioningApp:
             messages=[
                 {
                     "role": "system",
-                    "content": "This is a chat between a user and an assistant. The assistant is helping the user to caption an image for training lora model.",
+                    "content": """
+Write a four sentence caption for this image. In the first sentence describe the style and type (painting, photo, etc) of the image. Describe in the remaining sentences the contents and composition of the image. Only use language that would be used to prompt a text to image model. Do not include usage. Comma separate keywords rather than using "or". Precise composition is important. Avoid phrases like "conveys a sense of" and "capturing the", just use the terms themselves.
+
+Good examples are:
+
+"Photo of an alien woman with a glowing halo standing on top of a mountain, wearing a white robe and silver mask in the futuristic style with futuristic design, sky background, soft lighting, dynamic pose, a sense of future technology, a science fiction movie scene rendered in the Unreal Engine."
+
+"A scene from the cartoon series Masters of the Universe depicts Man-At-Arms wearing a gray helmet and gray armor with red gloves. He is holding an iron bar above his head while looking down on Orko, a pink blob character. Orko is sitting behind Man-At-Arms facing left on a chair. Both characters are standing near each other, with Orko inside a yellow chestplate over a blue shirt and black pants. The scene is drawn in the style of the Masters of the Universe cartoon series."
+
+"An emoji, digital illustration, playful, whimsical. A cartoon zombie character with green skin and tattered clothes reaches forward with two hands, they have green skin, messy hair, an open mouth and gaping teeth, one eye is half closed."
+""",
                 },
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": "caption the image with comma separated keyword only for training lora model"},
+                        {"type": "text", "text": "Caption this image please"},
                         {
                             "type": "image_url",
                             "image_url": {
